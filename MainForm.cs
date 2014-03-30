@@ -35,7 +35,7 @@ namespace Jamijo
 
         private void UserComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // TO-DO: Change user
+            DataGrid.Rows.Clear();
         }
 
         private void AddUserButton_Click(object sender, EventArgs e)
