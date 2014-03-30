@@ -60,13 +60,27 @@ namespace Jamijo
 
         private void StatTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (StatTypeComboBox.SelectedText == "Activities")
+            if (StatTypeComboBox.SelectedIndex == StatTypeComboBox.Items.IndexOf("Activities"))
             {
-                // TO-DO
+                TypeColumn.Items.Clear();
+                TypeColumn.Items.AddRange(new object[] {
+                    "Leisure",
+                    "Exercise",
+                    "Sleep",
+                    "Eating",
+                    "Transportation"});
+                HoursColumn.HeaderText = "Hours";
             }
-            if (StatTypeComboBox.SelectedText == "Health Statistics")
+            if (StatTypeComboBox.SelectedIndex == StatTypeComboBox.Items.IndexOf("Health Statistics"))
             {
-                // TO-DO
+                TypeColumn.Items.Clear();
+                TypeColumn.Items.AddRange(new object[] {
+                    "Calories",
+                    "Height",
+                    "Weight",
+                    "Blood Pressure",
+                    "Heart Rate"});
+                HoursColumn.HeaderText = "Units";
             }
         }
 

@@ -6,3 +6,4 @@ C:\Users\Hyouka\Dropbox\Documents\Arizona State University\CSE360\Class Project\
 C:\Users\Hyouka\Dropbox\Documents\Arizona State University\CSE360\Class Project\Jamijo\Jamijo\obj\Debug\Jamijo.Properties.Resources.resources
 C:\Users\Hyouka\Dropbox\Documents\Arizona State University\CSE360\Class Project\Jamijo\Jamijo\obj\Debug\Jamijo.exe
 C:\Users\Hyouka\Dropbox\Documents\Arizona State University\CSE360\Class Project\Jamijo\Jamijo\obj\Debug\Jamijo.pdb
+C:\Users\Hyouka\Dropbox\Documents\Arizona State University\CSE360\Class Project\Jamijo\Jamijo\obj\Debug\Jamijo.csprojResolveAssemblyReference.cache
