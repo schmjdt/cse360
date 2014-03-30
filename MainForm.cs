@@ -19,6 +19,7 @@ namespace Jamijo
 
             this.ChartComboBox.SelectedIndex = 0;
             this.StatTypeComboBox.SelectedIndex = 0;
+            this.StatTypeComboBox.Text = "Activities";
 
             // Load list of users
             if (File.Exists("./users.txt"))
@@ -33,6 +34,17 @@ namespace Jamijo
             }
         }
 
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Save list of users
+            StreamWriter Writer = new StreamWriter("./users.txt");
+            for (int count = 0; count < UserComboBox.Items.Count; count++)
+            {
+                Writer.WriteLine(UserComboBox.Items[count].ToString());
+            }
+            Writer.Close();
+        }
+
         private void UserComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             DataGrid.Rows.Clear();
@@ -44,7 +56,7 @@ namespace Jamijo
             if (username.Trim().Length != 0 && !UserComboBox.Items.Contains(username))
             {
                 UserComboBox.Items.Add(username);
-                AddUserTextBox.Text = "";
+                AddUserTextBox.Text = string.Empty;
                 Directory.CreateDirectory("./" + username + "/");
             }
             UserComboBox.SelectedIndex = UserComboBox.Items.IndexOf(username);
@@ -60,9 +72,11 @@ namespace Jamijo
 
         private void StatTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            DataGrid.Rows.Clear();
+            TypeColumn.Items.Clear();
+
             if (StatTypeComboBox.SelectedIndex == StatTypeComboBox.Items.IndexOf("Activities"))
             {
-                TypeColumn.Items.Clear();
                 TypeColumn.Items.AddRange(new object[] {
                     "Leisure",
                     "Exercise",
@@ -73,7 +87,6 @@ namespace Jamijo
             }
             if (StatTypeComboBox.SelectedIndex == StatTypeComboBox.Items.IndexOf("Health Statistics"))
             {
-                TypeColumn.Items.Clear();
                 TypeColumn.Items.AddRange(new object[] {
                     "Calories",
                     "Height",
@@ -105,16 +118,11 @@ namespace Jamijo
             }
         }
 
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void DataGrid_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            // Save list of users
-            StreamWriter Writer = new StreamWriter("./users.txt");
-            for (int count = 0; count < UserComboBox.Items.Count; count++)
-            {
-                Writer.WriteLine(UserComboBox.Items[count].ToString());
-            }
-            Writer.Close();
+            AddUserTextBox.Text = MonthCalendar.SelectionRange.Start.ToString("dd-MM-yyyy-")
+                + StatTypeComboBox.Text.Replace(" ", string.Empty)
+                + ".txt";
         }
-
     }
 }

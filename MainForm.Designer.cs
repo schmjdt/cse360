@@ -60,6 +60,7 @@
             this.DataGrid.RowHeadersWidth = 98;
             this.DataGrid.Size = new System.Drawing.Size(500, 162);
             this.DataGrid.TabIndex = 0;
+            this.DataGrid.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGrid_CellValueChanged);
             // 
             // TypeColumn
             // 
@@ -134,6 +135,7 @@
             // MonthCalendar
             // 
             this.MonthCalendar.Location = new System.Drawing.Point(537, 86);
+            this.MonthCalendar.MaxSelectionCount = 1;
             this.MonthCalendar.Name = "MonthCalendar";
             this.MonthCalendar.TabIndex = 6;
             this.MonthCalendar.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.MonthCalendar_DateSelected);
