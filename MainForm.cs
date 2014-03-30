@@ -54,12 +54,14 @@ namespace Jamijo
         private void AddUserButton_Click(object sender, EventArgs e)
         {
             string username = AddUserTextBox.Text.ToString();
-            if (username.Trim().Length != 0 && !UserComboBox.Items.Contains(username))
+            if (username.Trim().Length != 0)
             {
-                UserComboBox.Items.Add(username);
-                AddUserTextBox.Text = string.Empty;
-                Directory.CreateDirectory("./" + username + "/");
+                if(!UserComboBox.Items.Contains(username))
+                    UserComboBox.Items.Add(username);
+                if(!Directory.Exists("./" + username + "/"))
+                    Directory.CreateDirectory("./" + username + "/");
             }
+            AddUserTextBox.Text = string.Empty;
             UserComboBox.SelectedIndex = UserComboBox.Items.IndexOf(username);
         }
 
@@ -100,7 +102,9 @@ namespace Jamijo
 
         private void MonthCalendar_DateSelected(object sender, DateRangeEventArgs e)
         {
-            string FileName;
+            if (UserComboBox.Text == string.Empty)
+                return;
+            string FileName = "./" + UserComboBox.Text + "/";
 
             if (StatTypeComboBox.SelectedIndex == StatTypeComboBox.Items.IndexOf("Activities"))
             {
@@ -115,7 +119,7 @@ namespace Jamijo
 
             if (File.Exists("./" + FileName))
             {
-                // TO-DO
+                // Load data
             }
         }
 
@@ -137,17 +141,22 @@ namespace Jamijo
 
         private void DataGrid_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            string FileName;
+            if (UserComboBox.Text == string.Empty)
+                return;
+            string FileName = "./" + UserComboBox.Text + "/";
+
             if (StatTypeComboBox.SelectedIndex == StatTypeComboBox.Items.IndexOf("Activities"))
             {
-                FileName = MonthCalendar.SelectionRange.Start.ToString("dd-MM-yyyy-")
+                FileName += MonthCalendar.SelectionRange.Start.ToString("dd-MM-yyyy-")
                     + "activities.txt";
             }
             else
             {
-                FileName = MonthCalendar.SelectionRange.Start.ToString("dd-MM-yyyy-")
+                FileName += MonthCalendar.SelectionRange.Start.ToString("dd-MM-yyyy-")
                     + "healthstatistics.txt";
             }
+
+            // Write to file
         }
     }
 }
