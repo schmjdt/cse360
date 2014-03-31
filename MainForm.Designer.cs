@@ -31,7 +31,11 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 1D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint2 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 1D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint3 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 1D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint4 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 1D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint5 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 1D);
             this.DataGridView = new System.Windows.Forms.DataGridView();
             this.TypeColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.HoursColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -98,18 +102,27 @@
             this.Chart.Location = new System.Drawing.Point(25, 266);
             this.Chart.Name = "Chart";
             series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             series1.Legend = "Legend1";
-            series1.LegendText = "Activities";
-            series1.Name = "ActivitiesSeries";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.LegendText = "Health Stats";
-            series2.Name = "StatsSeries";
+            series1.Name = "Series";
+            dataPoint1.IsValueShownAsLabel = false;
+            dataPoint1.IsVisibleInLegend = true;
+            dataPoint1.Label = "Leisure";
+            dataPoint2.Label = "Exercise";
+            dataPoint3.Label = "Sleep";
+            dataPoint4.Label = "Eating";
+            dataPoint5.Label = "Trans.";
+            series1.Points.Add(dataPoint1);
+            series1.Points.Add(dataPoint2);
+            series1.Points.Add(dataPoint3);
+            series1.Points.Add(dataPoint4);
+            series1.Points.Add(dataPoint5);
+            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.String;
             this.Chart.Series.Add(series1);
-            this.Chart.Series.Add(series2);
             this.Chart.Size = new System.Drawing.Size(500, 200);
             this.Chart.TabIndex = 1;
-            this.Chart.Text = "chart1";
+            this.Chart.Text = "Chart";
             // 
             // ChartComboBox
             // 
@@ -154,12 +167,7 @@
             "Exercise",
             "Sleeping",
             "Eating",
-            "Transportation",
-            "Calories",
-            "Height",
-            "Weight",
-            "Blood Pressure",
-            "Heart Rate"});
+            "Transportation"});
             this.ChartListBox.Location = new System.Drawing.Point(537, 266);
             this.ChartListBox.Name = "ChartListBox";
             this.ChartListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;

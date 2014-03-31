@@ -79,7 +79,13 @@ namespace Jamijo
             }
 
             // Update Chart
-            // TO-DO
+            foreach (var series in Chart.Series) {
+                series.Points.Clear();
+            }
+            for(int row = 0; row < DataGridView.Rows.Count - 1; row++) {
+                    Chart.Series[0].Points.AddXY(DataGridView.Rows[row].Cells[0].FormattedValue.ToString(), Convert.ToDouble(DataGridView.Rows[row].Cells[1].Value));
+            }
+            Chart.DataBind();
         }
 
         private void AddUserButton_Click(object sender, EventArgs e)
@@ -137,7 +143,7 @@ namespace Jamijo
         private void ChartComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ChartComboBox.SelectedText == "Daily") {
-                // TO-DO
+                UserComboBox_SelectedIndexChanged(sender, e);
             }
             if (ChartComboBox.SelectedText == "Weekly") {
                 // TO-DO

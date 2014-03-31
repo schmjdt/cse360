@@ -1,2 +1,2 @@
-Eating|24|I like cookies
+Eating|10|I like cookies
 NULL|NULL|NULL
