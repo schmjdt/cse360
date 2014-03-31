@@ -47,6 +47,7 @@ namespace Jamijo
             // Clear DataGrid for new user
             DataGridView.Rows.Clear();
 
+            // Update DataGridView
             if (UserComboBox.Text == string.Empty)
                 return;
             string FileName = "./" + UserComboBox.Text + "/";
@@ -73,7 +74,12 @@ namespace Jamijo
                     }
                     counter++;
                 }
+
+                Reader.Close();
             }
+
+            // Update Chart
+            // TO-DO
         }
 
         private void AddUserButton_Click(object sender, EventArgs e)
@@ -98,7 +104,6 @@ namespace Jamijo
 
         private void StatTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DataGridView.Rows.Clear();
             TypeColumn.Items.Clear();
 
             if (StatTypeComboBox.SelectedIndex == StatTypeComboBox.Items.IndexOf("Activities")) {
@@ -119,37 +124,14 @@ namespace Jamijo
                     "Heart Rate"});
                 HoursColumn.HeaderText = "Units";
             }
+
+            // Update DataGridView
+            UserComboBox_SelectedIndexChanged(sender, e);
         }
 
         private void MonthCalendar_DateSelected(object sender, DateRangeEventArgs e)
         {
-            if (UserComboBox.Text == string.Empty)
-                return;
-            string FileName = "./" + UserComboBox.Text + "/";
-
-            if (StatTypeComboBox.SelectedIndex == StatTypeComboBox.Items.IndexOf("Activities")) {
-                FileName += MonthCalendar.SelectionRange.Start.ToString("dd-MM-yyyy-")
-                    + "activities.txt";
-            } else {
-                FileName += MonthCalendar.SelectionRange.Start.ToString("dd-MM-yyyy-")
-                    + "healthstatistics.txt";
-            }
-
-            if (File.Exists(FileName)) {
-                StreamReader Reader = new StreamReader(FileName);
-
-                string Line;
-                int counter = 0;
-                while ((Line = Reader.ReadLine()) != null) {
-                    if (!Line.Split('|').Contains("NULL")) {
-                        DataGridView.Rows.Add();
-                        DataGridView.Rows[counter].Cells[0].Value = Line.Split('|')[0];
-                        DataGridView.Rows[counter].Cells[1].Value = Line.Split('|')[1];
-                        DataGridView.Rows[counter].Cells[2].Value = Line.Split('|')[2];
-                    }
-                    counter++;
-                }
-            }
+            UserComboBox_SelectedIndexChanged(sender, e);
         }
 
         private void ChartComboBox_SelectedIndexChanged(object sender, EventArgs e)

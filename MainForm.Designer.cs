@@ -31,6 +31,7 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.DataGridView = new System.Windows.Forms.DataGridView();
             this.TypeColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.HoursColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -99,8 +100,13 @@
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.LegendText = "Activities";
-            series1.Name = "Series1";
+            series1.Name = "ActivitiesSeries";
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.LegendText = "Health Stats";
+            series2.Name = "StatsSeries";
             this.Chart.Series.Add(series1);
+            this.Chart.Series.Add(series2);
             this.Chart.Size = new System.Drawing.Size(500, 200);
             this.Chart.TabIndex = 1;
             this.Chart.Text = "chart1";

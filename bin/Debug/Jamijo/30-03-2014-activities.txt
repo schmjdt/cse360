@@ -1,0 +1,5 @@
+Leisure|24|YOLO
+Exercise|12|Do you even lift?
+Sleep|0|Sleep is for the weak
+Transportation|3|Took me 3 hours to drive to the party
+NULL|NULL|NULL
