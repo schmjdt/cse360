@@ -1,3 +1,0 @@
-Calories | 230 | I burned 230 calories today!
-Heart Rate | 10 | WOW!
-NULL | NULL | NULL

@@ -46,6 +46,34 @@ namespace Jamijo
         {
             // Clear DataGrid for new user
             DataGridView.Rows.Clear();
+
+            if (UserComboBox.Text == string.Empty)
+                return;
+            string FileName = "./" + UserComboBox.Text + "/";
+
+            if (StatTypeComboBox.SelectedIndex == StatTypeComboBox.Items.IndexOf("Activities")) {
+                FileName += MonthCalendar.SelectionRange.Start.ToString("dd-MM-yyyy-")
+                    + "activities.txt";
+            } else {
+                FileName += MonthCalendar.SelectionRange.Start.ToString("dd-MM-yyyy-")
+                    + "healthstatistics.txt";
+            }
+
+            if (File.Exists(FileName)) {
+                StreamReader Reader = new StreamReader(FileName);
+
+                string Line;
+                int counter = 0;
+                while ((Line = Reader.ReadLine()) != null) {
+                    if (!Line.Split('|').Contains("NULL")) {
+                        DataGridView.Rows.Add();
+                        DataGridView.Rows[counter].Cells[0].Value = Line.Split('|')[0];
+                        DataGridView.Rows[counter].Cells[1].Value = Line.Split('|')[1];
+                        DataGridView.Rows[counter].Cells[2].Value = Line.Split('|')[2];
+                    }
+                    counter++;
+                }
+            }
         }
 
         private void AddUserButton_Click(object sender, EventArgs e)
@@ -100,15 +128,27 @@ namespace Jamijo
             string FileName = "./" + UserComboBox.Text + "/";
 
             if (StatTypeComboBox.SelectedIndex == StatTypeComboBox.Items.IndexOf("Activities")) {
-                FileName = MonthCalendar.SelectionRange.Start.ToString("dd-MM-yyyy-")
+                FileName += MonthCalendar.SelectionRange.Start.ToString("dd-MM-yyyy-")
                     + "activities.txt";
             } else {
-                FileName = MonthCalendar.SelectionRange.Start.ToString("dd-MM-yyyy-")
+                FileName += MonthCalendar.SelectionRange.Start.ToString("dd-MM-yyyy-")
                     + "healthstatistics.txt";
             }
 
             if (File.Exists(FileName)) {
-                // Load data
+                StreamReader Reader = new StreamReader(FileName);
+
+                string Line;
+                int counter = 0;
+                while ((Line = Reader.ReadLine()) != null) {
+                    if (!Line.Split('|').Contains("NULL")) {
+                        DataGridView.Rows.Add();
+                        DataGridView.Rows[counter].Cells[0].Value = Line.Split('|')[0];
+                        DataGridView.Rows[counter].Cells[1].Value = Line.Split('|')[1];
+                        DataGridView.Rows[counter].Cells[2].Value = Line.Split('|')[2];
+                    }
+                    counter++;
+                }
             }
         }
 
@@ -125,7 +165,7 @@ namespace Jamijo
             }
         }
 
-        private void DataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        private void DataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             if (UserComboBox.Text == string.Empty)
                 return;
@@ -144,15 +184,15 @@ namespace Jamijo
                 string Line = string.Empty;
 
                 if ((DataGridView.Rows[row].Cells[0] as DataGridViewComboBoxCell).FormattedValue.ToString() != string.Empty) {
-                    Line += (DataGridView.Rows[row].Cells[0] as DataGridViewComboBoxCell).FormattedValue.ToString() + " | ";
+                    Line += (DataGridView.Rows[row].Cells[0] as DataGridViewComboBoxCell).FormattedValue.ToString() + "|";
                 } else {
-                    Line += "NULL | ";
+                    Line += "NULL|";
                 }
 
                 if (DataGridView.Rows[row].Cells[1].FormattedValue.ToString() != string.Empty) {
-                    Line += DataGridView.Rows[row].Cells[1].FormattedValue.ToString() + " | ";
+                    Line += DataGridView.Rows[row].Cells[1].FormattedValue.ToString() + "|";
                 } else {
-                    Line += "NULL | ";
+                    Line += "NULL|";
                 }
 
                 if (DataGridView.Rows[row].Cells[2].FormattedValue.ToString() != string.Empty) {
