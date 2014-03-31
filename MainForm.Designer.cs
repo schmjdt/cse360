@@ -55,7 +55,7 @@
             this.TypeColumn,
             this.HoursColumn,
             this.CommentsColumn});
-            this.DataGridView.Location = new System.Drawing.Point(25, 86);
+            this.DataGridView.Location = new System.Drawing.Point(25, 74);
             this.DataGridView.Name = "DataGridView";
             this.DataGridView.RowHeadersWidth = 98;
             this.DataGridView.Size = new System.Drawing.Size(500, 162);
@@ -94,7 +94,7 @@
             this.Chart.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.Chart.Legends.Add(legend1);
-            this.Chart.Location = new System.Drawing.Point(25, 278);
+            this.Chart.Location = new System.Drawing.Point(25, 266);
             this.Chart.Name = "Chart";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
@@ -113,7 +113,7 @@
             "Daily",
             "Weekly",
             "Monthly"});
-            this.ChartComboBox.Location = new System.Drawing.Point(537, 457);
+            this.ChartComboBox.Location = new System.Drawing.Point(537, 445);
             this.ChartComboBox.Name = "ChartComboBox";
             this.ChartComboBox.Size = new System.Drawing.Size(96, 21);
             this.ChartComboBox.TabIndex = 2;
@@ -126,7 +126,7 @@
             this.StatTypeComboBox.Items.AddRange(new object[] {
             "Activities",
             "Health Statistics"});
-            this.StatTypeComboBox.Location = new System.Drawing.Point(414, 43);
+            this.StatTypeComboBox.Location = new System.Drawing.Point(414, 31);
             this.StatTypeComboBox.Name = "StatTypeComboBox";
             this.StatTypeComboBox.Size = new System.Drawing.Size(111, 21);
             this.StatTypeComboBox.TabIndex = 3;
@@ -134,7 +134,7 @@
             // 
             // MonthCalendar
             // 
-            this.MonthCalendar.Location = new System.Drawing.Point(537, 86);
+            this.MonthCalendar.Location = new System.Drawing.Point(537, 74);
             this.MonthCalendar.MaxSelectionCount = 1;
             this.MonthCalendar.Name = "MonthCalendar";
             this.MonthCalendar.TabIndex = 6;
@@ -154,7 +154,7 @@
             "Weight",
             "Blood Pressure",
             "Heart Rate"});
-            this.ChartListBox.Location = new System.Drawing.Point(537, 278);
+            this.ChartListBox.Location = new System.Drawing.Point(537, 266);
             this.ChartListBox.Name = "ChartListBox";
             this.ChartListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.ChartListBox.Size = new System.Drawing.Size(227, 160);
@@ -162,7 +162,7 @@
             // 
             // AddUserButton
             // 
-            this.AddUserButton.Location = new System.Drawing.Point(136, 40);
+            this.AddUserButton.Location = new System.Drawing.Point(136, 28);
             this.AddUserButton.Name = "AddUserButton";
             this.AddUserButton.Size = new System.Drawing.Size(100, 23);
             this.AddUserButton.TabIndex = 8;
@@ -172,7 +172,7 @@
             // 
             // PrintButton
             // 
-            this.PrintButton.Location = new System.Drawing.Point(664, 457);
+            this.PrintButton.Location = new System.Drawing.Point(664, 445);
             this.PrintButton.Name = "PrintButton";
             this.PrintButton.Size = new System.Drawing.Size(100, 23);
             this.PrintButton.TabIndex = 9;
@@ -183,7 +183,7 @@
             // 
             this.UserComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UserComboBox.FormattingEnabled = true;
-            this.UserComboBox.Location = new System.Drawing.Point(25, 42);
+            this.UserComboBox.Location = new System.Drawing.Point(25, 30);
             this.UserComboBox.Name = "UserComboBox";
             this.UserComboBox.Size = new System.Drawing.Size(100, 21);
             this.UserComboBox.TabIndex = 12;
@@ -191,7 +191,7 @@
             // 
             // AddUserTextBox
             // 
-            this.AddUserTextBox.Location = new System.Drawing.Point(250, 43);
+            this.AddUserTextBox.Location = new System.Drawing.Point(250, 31);
             this.AddUserTextBox.Name = "AddUserTextBox";
             this.AddUserTextBox.Size = new System.Drawing.Size(100, 20);
             this.AddUserTextBox.TabIndex = 13;
