@@ -1,0 +1,3 @@
+Leisure | 2 | TV
+Eating | 1 | I ate at a restaurant for an hour
+NULL | NULL | NULL

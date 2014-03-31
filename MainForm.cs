@@ -22,12 +22,10 @@ namespace Jamijo
             this.StatTypeComboBox.Text = "Activities";
 
             // Load list of users
-            if (File.Exists("./users.txt"))
-            {
+            if (File.Exists("./users.txt")) {
                 string Line;
                 StreamReader Reader = new StreamReader("./users.txt");
-                while ((Line = Reader.ReadLine()) != null)
-                {
+                while ((Line = Reader.ReadLine()) != null) {
                     UserComboBox.Items.Add(Line);
                 }
                 Reader.Close();
@@ -38,8 +36,7 @@ namespace Jamijo
         {
             // Save list of users
             StreamWriter Writer = new StreamWriter("./users.txt");
-            for (int count = 0; count < UserComboBox.Items.Count; count++)
-            {
+            for (int count = 0; count < UserComboBox.Items.Count; count++) {
                 Writer.WriteLine(UserComboBox.Items[count].ToString());
             }
             Writer.Close();
@@ -48,17 +45,16 @@ namespace Jamijo
         private void UserComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Clear DataGrid for new user
-            DataGrid.Rows.Clear();
+            DataGridView.Rows.Clear();
         }
 
         private void AddUserButton_Click(object sender, EventArgs e)
         {
             string username = AddUserTextBox.Text.ToString();
-            if (username.Trim().Length != 0)
-            {
-                if(!UserComboBox.Items.Contains(username))
+            if (username.Trim().Length != 0) {
+                if (!UserComboBox.Items.Contains(username))
                     UserComboBox.Items.Add(username);
-                if(!Directory.Exists("./" + username + "/"))
+                if (!Directory.Exists("./" + username + "/"))
                     Directory.CreateDirectory("./" + username + "/");
             }
             AddUserTextBox.Text = string.Empty;
@@ -67,19 +63,17 @@ namespace Jamijo
 
         private void AddUserTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == Convert.ToChar(Keys.Return))
-            {
+            if (e.KeyChar == Convert.ToChar(Keys.Return)) {
                 AddUserButton_Click(sender, e);
             }
         }
 
         private void StatTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DataGrid.Rows.Clear();
+            DataGridView.Rows.Clear();
             TypeColumn.Items.Clear();
 
-            if (StatTypeComboBox.SelectedIndex == StatTypeComboBox.Items.IndexOf("Activities"))
-            {
+            if (StatTypeComboBox.SelectedIndex == StatTypeComboBox.Items.IndexOf("Activities")) {
                 TypeColumn.Items.AddRange(new object[] {
                     "Leisure",
                     "Exercise",
@@ -88,8 +82,7 @@ namespace Jamijo
                     "Transportation"});
                 HoursColumn.HeaderText = "Hours";
             }
-            if (StatTypeComboBox.SelectedIndex == StatTypeComboBox.Items.IndexOf("Health Statistics"))
-            {
+            if (StatTypeComboBox.SelectedIndex == StatTypeComboBox.Items.IndexOf("Health Statistics")) {
                 TypeColumn.Items.AddRange(new object[] {
                     "Calories",
                     "Height",
@@ -106,57 +99,71 @@ namespace Jamijo
                 return;
             string FileName = "./" + UserComboBox.Text + "/";
 
-            if (StatTypeComboBox.SelectedIndex == StatTypeComboBox.Items.IndexOf("Activities"))
-            {
+            if (StatTypeComboBox.SelectedIndex == StatTypeComboBox.Items.IndexOf("Activities")) {
                 FileName = MonthCalendar.SelectionRange.Start.ToString("dd-MM-yyyy-")
                     + "activities.txt";
-            }
-            else
-            {
+            } else {
                 FileName = MonthCalendar.SelectionRange.Start.ToString("dd-MM-yyyy-")
                     + "healthstatistics.txt";
             }
 
-            if (File.Exists("./" + FileName))
-            {
+            if (File.Exists(FileName)) {
                 // Load data
             }
         }
 
         private void ChartComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ChartComboBox.SelectedText == "Daily")
-            {
+            if (ChartComboBox.SelectedText == "Daily") {
                 // TO-DO
             }
-            if (ChartComboBox.SelectedText == "Weekly")
-            {
+            if (ChartComboBox.SelectedText == "Weekly") {
                 // TO-DO
             }
-            if (ChartComboBox.SelectedText == "Monthly")
-            {
+            if (ChartComboBox.SelectedText == "Monthly") {
                 // TO-DO
             }
         }
 
-        private void DataGrid_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        private void DataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (UserComboBox.Text == string.Empty)
                 return;
             string FileName = "./" + UserComboBox.Text + "/";
 
-            if (StatTypeComboBox.SelectedIndex == StatTypeComboBox.Items.IndexOf("Activities"))
-            {
+            if (StatTypeComboBox.SelectedIndex == StatTypeComboBox.Items.IndexOf("Activities")) {
                 FileName += MonthCalendar.SelectionRange.Start.ToString("dd-MM-yyyy-")
                     + "activities.txt";
-            }
-            else
-            {
+            } else {
                 FileName += MonthCalendar.SelectionRange.Start.ToString("dd-MM-yyyy-")
                     + "healthstatistics.txt";
             }
 
-            // Write to file
+            StreamWriter Writer = new StreamWriter(FileName);
+            for (int row = 0; row < DataGridView.Rows.Count; row++) {
+                string Line = string.Empty;
+
+                if ((DataGridView.Rows[row].Cells[0] as DataGridViewComboBoxCell).FormattedValue.ToString() != string.Empty) {
+                    Line += (DataGridView.Rows[row].Cells[0] as DataGridViewComboBoxCell).FormattedValue.ToString() + " | ";
+                } else {
+                    Line += "NULL | ";
+                }
+
+                if (DataGridView.Rows[row].Cells[1].FormattedValue.ToString() != string.Empty) {
+                    Line += DataGridView.Rows[row].Cells[1].FormattedValue.ToString() + " | ";
+                } else {
+                    Line += "NULL | ";
+                }
+
+                if (DataGridView.Rows[row].Cells[2].FormattedValue.ToString() != string.Empty) {
+                    Line += DataGridView.Rows[row].Cells[2].FormattedValue.ToString();
+                } else {
+                    Line += "NULL";
+                }
+
+                Writer.WriteLine(Line);
+            }
+            Writer.Close();
         }
     }
 }

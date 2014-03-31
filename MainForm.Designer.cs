@@ -31,7 +31,7 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            this.DataGrid = new System.Windows.Forms.DataGridView();
+            this.DataGridView = new System.Windows.Forms.DataGridView();
             this.TypeColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.HoursColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CommentsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,23 +44,23 @@
             this.PrintButton = new System.Windows.Forms.Button();
             this.UserComboBox = new System.Windows.Forms.ComboBox();
             this.AddUserTextBox = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Chart)).BeginInit();
             this.SuspendLayout();
             // 
-            // DataGrid
+            // DataGridView
             // 
-            this.DataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TypeColumn,
             this.HoursColumn,
             this.CommentsColumn});
-            this.DataGrid.Location = new System.Drawing.Point(25, 86);
-            this.DataGrid.Name = "DataGrid";
-            this.DataGrid.RowHeadersWidth = 98;
-            this.DataGrid.Size = new System.Drawing.Size(500, 162);
-            this.DataGrid.TabIndex = 0;
-            this.DataGrid.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGrid_CellValueChanged);
+            this.DataGridView.Location = new System.Drawing.Point(25, 86);
+            this.DataGridView.Name = "DataGridView";
+            this.DataGridView.RowHeadersWidth = 98;
+            this.DataGridView.Size = new System.Drawing.Size(500, 162);
+            this.DataGridView.TabIndex = 0;
+            this.DataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellValueChanged);
             // 
             // TypeColumn
             // 
@@ -211,11 +211,11 @@
             this.Controls.Add(this.StatTypeComboBox);
             this.Controls.Add(this.ChartComboBox);
             this.Controls.Add(this.Chart);
-            this.Controls.Add(this.DataGrid);
+            this.Controls.Add(this.DataGridView);
             this.Name = "MainForm";
             this.Text = "Personal Tracking Logger";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
-            ((System.ComponentModel.ISupportInitialize)(this.DataGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Chart)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -224,7 +224,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView DataGrid;
+        private System.Windows.Forms.DataGridView DataGridView;
         private System.Windows.Forms.DataVisualization.Charting.Chart Chart;
         private System.Windows.Forms.ComboBox ChartComboBox;
         private System.Windows.Forms.ComboBox StatTypeComboBox;
