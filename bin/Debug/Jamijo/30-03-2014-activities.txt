@@ -1,6 +1,0 @@
-Leisure|12|YOLO
-Exercise|12|Do you even lift?
-Sleep|15|Sleep lots
-Transportation|10|Drove
-Sleep|1|NULL
-NULL|NULL|NULL

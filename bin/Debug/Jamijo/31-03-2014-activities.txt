@@ -1,2 +1,0 @@
-Exercise|24|I did nothing but lift today
-NULL|NULL|NULL
