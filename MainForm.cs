@@ -110,6 +110,7 @@ namespace Jamijo
 
         private void StatTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            DataGridView.Rows.Clear();
             TypeColumn.Items.Clear();
 
             if (StatTypeComboBox.SelectedIndex == StatTypeComboBox.Items.IndexOf("Activities")) {
