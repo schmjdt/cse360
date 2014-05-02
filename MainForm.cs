@@ -194,5 +194,48 @@ namespace Jamijo
             }
             Writer.Close();
         }
+
+        private void PrintButton_Click(object sender, EventArgs e)
+        {
+            if (UserComboBox.Text == string.Empty)
+                return;
+            string FileName = "./" + UserComboBox.Text + "/";
+
+            if (StatTypeComboBox.SelectedIndex == StatTypeComboBox.Items.IndexOf("Activities")) {
+                FileName += MonthCalendar.SelectionRange.Start.ToString("dd-MM-yyyy-")
+                    + "activities.txt";
+            } else {
+                FileName += MonthCalendar.SelectionRange.Start.ToString("dd-MM-yyyy-")
+                    + "healthstatistics.txt";
+            }
+
+            StreamWriter Writer = new StreamWriter(FileName);
+            for (int row = 0; row < DataGridView.Rows.Count; row++) {
+                string Line = string.Empty;
+
+                if ((DataGridView.Rows[row].Cells[0] as DataGridViewComboBoxCell).FormattedValue.ToString() != string.Empty) {
+                    Line += (DataGridView.Rows[row].Cells[0] as DataGridViewComboBoxCell).FormattedValue.ToString() + "|";
+                } else {
+                    Line += "NULL|";
+                }
+
+                if (DataGridView.Rows[row].Cells[1].FormattedValue.ToString() != string.Empty) {
+                    Line += DataGridView.Rows[row].Cells[1].FormattedValue.ToString() + "|";
+                } else {
+                    Line += "NULL|";
+                }
+
+                if (DataGridView.Rows[row].Cells[2].FormattedValue.ToString() != string.Empty) {
+                    Line += DataGridView.Rows[row].Cells[2].FormattedValue.ToString();
+                } else {
+                    Line += "NULL";
+                }
+
+                Writer.WriteLine(Line);
+            }
+            Writer.Close();
+
+            MessageBox.Show("Printed the document to a text file!");
+        }
     }
 }
